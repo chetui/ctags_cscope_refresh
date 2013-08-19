@@ -1,4 +1,4 @@
-### what this simple script can do
+### What this simple script can do
 
 It is a Vim plugin, which can build and manage an **unique** tag database for ctags & cscope in your project.
 
