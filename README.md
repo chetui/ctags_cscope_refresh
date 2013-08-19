@@ -32,7 +32,7 @@ if **the path of your current editing file is in your project's path (including 
 
 ### How to use when I edit files of different projects
 
-The Vim can only use one cscope.out at a time.
+The Vim should only use one cscope.out at a time (otherwise it is not good for the localization accuracy.
 
 Hence, when you switch files of different projects in the Vim, you should press the hotkey \<C-@\>\<C-c\> to switch cscope.out mannually. 
 
