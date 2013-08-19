@@ -1,5 +1,5 @@
 python << EOF
-import sys, os, vim
+import sys, os, vim, time
 
 def get_proj_path():
     cur_path = os.getcwd()
@@ -17,9 +17,14 @@ def get_proj_path():
     return proj_path
 
 def reset_cscope_con(proj_path):
-    vim.command("silent cs kill cscope.out")
+    if vim.eval("g:ctagscscoperefresh_connected") == "1": 
+        vim.command("silent cs kill cscope.out")
+    else:
+        vim.command("let g:ctagscscoperefresh_connected=1")
+    while not os.path.exists(os.path.join(proj_path, 'cscope.out')):
+        print "Creating tags&cscope.out... Please wait for a while."
+        time.sleep(1)
     vim.command("silent cs add " + os.path.join(proj_path, 'cscope.out'))
-    #"vim.command("set tags=" + os.path.join(proj_path, 'tags'))
     return
 
 def ctags_cscope_refresh_file():
@@ -50,7 +55,11 @@ def ctags_cscope_refresh_con():
     return
 
 init_proj_path = get_proj_path()
-vim.command("silent cs add " + os.path.join(init_proj_path, 'cscope.out'))
+if os.path.exists(os.path.join(init_proj_path, 'cscope.out')):
+    vim.command("silent cs add " + os.path.join(init_proj_path, 'cscope.out'))
+    vim.command("let g:ctagscscoperefresh_connected=1")
+else:
+    vim.command("let g:ctagscscoperefresh_connected=0")
 
 EOF
 
