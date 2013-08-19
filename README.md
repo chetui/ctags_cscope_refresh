@@ -1,34 +1,47 @@
 ### what this simple script can do
 
-It can build an unique tag database for ctags & cscope in you project, whenever you input cmd **:CtagsCscopeRefresh** or press the hotkey that maps to this cmd.
+It is a Vim plugin, which can build and manage an **unique** tag database for ctags & cscope in your project.
 
-### How to install it
+### How to install
 
-An easy way is to put ctags_cscope_refresh into .vim/Plugin/ .
+An easy way is to put unique-tagdb.vim into .vim/Plugin/ .
 
 But I highly recommend you to use [Bundle](https://github.com/gmarik/vundle.git) to install it:
 
-	Bundle 'chetui/ctags_cscope_refresh'
+	Bundle 'chetui/unique-tagdb'
 
-Option:
+You can map hotkeys to this script.
 
-You can map a hotkey to this script.
+Add following lines into your .vimrc:
 
-Add following line into your .vimrc:
-
-	nmap <C-@><C-@> :CtagsCscopeRefresh<CR>
+	nmap <C-@><C-f> :UniqueTagDBRefreshFile <CR>
+	nmap <C-@><C-c> :UniqueTagDBRefreshCon <CR>
+	nmap <C-@><C-s> :cs show <CR>
 
 You can replace the key youself.
 
-### How to use it
+### How to use
 
 When you want to build the tag database in your new projec **at the  first time**:
 
-you should open the Vim in **your project's root path**, (eg. /home/chetui/my_project/), and input cmd :CtagsCscopeRefresh or press the hotkey that maps to this cmd.
+you should open the Vim in **your project's root path**, (eg. /home/chetui/my_project/), and press the hotkey <C-@><C-f>.
 
 When you open the Vim **next time**:
 
-if **your current Vim's path is in your project's path (including any subpaths)**, then you can just use any of the two ways to refresh your tag database at anytime.
+if **the path of your current editing file is in your project's path (including any subpaths)**, then you can press the hotkey <C-@><C-f> to refresh your tag database at anytime.
 
+### How to use when I edit files of different projects
+
+The Vim can only use one cscope.out at a time.
+
+Hence, when you switch files of different projects in the Vim, you should press the hotkey <C-@><C-c> to switch cscope.out mannually. 
+
+Before switching cscope.out, you can also press the hotkey <C-@><C-s> to show which cscope.out you are using.
+
+### Bug Report
+
+You are welcome to send me an email <yuxinjie@zju.edu.cn> to report bugs.
 
 #### Enjoy it!
+
+
