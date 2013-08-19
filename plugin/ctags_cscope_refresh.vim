@@ -17,12 +17,9 @@ def get_proj_path():
     return proj_path
 
 def reset_cscope_con(proj_path):
-    if vim.eval("g:ctagscscoperefresh_isinited") != "0":
-        vim.command("cs kill cscope.out")
-    else:
-        vim.command("let g:ctagscscoperefresh_isinited = 1")
-    vim.command("cs add " + os.path.join(proj_path, 'cscope.out'))
-    #vim.command("set tags=" + os.path.join(proj_path, 'tags'))
+    vim.command("silent cs kill cscope.out")
+    vim.command("silent cs add " + os.path.join(proj_path, 'cscope.out'))
+    #"vim.command("set tags=" + os.path.join(proj_path, 'tags'))
     return
 
 def ctags_cscope_refresh_file():
@@ -49,8 +46,15 @@ def ctags_cscope_refresh_file():
 def ctags_cscope_refresh_con():
     proj_path = get_proj_path()
     reset_cscope_con(proj_path)
+    print "Refresh cscope connection successfully."
     return
+
+init_proj_path = get_proj_path()
+vim.command("silent cs add " + os.path.join(init_proj_path, 'cscope.out'))
+
 EOF
 
 command! -nargs=0 CtagsCscopeRefreshFile exec('py ctags_cscope_refresh_file()')
 command! -nargs=0 CtagsCscopeRefreshCon exec('py ctags_cscope_refresh_con()')
+
+
