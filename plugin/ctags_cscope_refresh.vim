@@ -1,5 +1,5 @@
 python << EOF
-import sys, os
+import sys, os, vim
 
 def get_proj_path():
     cur_path = os.getcwd()
@@ -15,8 +15,17 @@ def get_proj_path():
         proj_path = os.getcwd()
 
     return proj_path
-    
-def ctags_cscope_refresh():
+
+def reset_cscope_con(proj_path):
+    if vim.eval("g:ctagscscoperefresh_isinited") != "0":
+        vim.command("cs kill cscope.out")
+    else:
+        vim.command("let g:ctagscscoperefresh_isinited = 1")
+    vim.command("cs add " + os.path.join(proj_path, 'cscope.out'))
+    #vim.command("set tags=" + os.path.join(proj_path, 'tags'))
+    return
+
+def ctags_cscope_refresh_file():
     proj_path = get_proj_path()
 
     output = os.popen("""
@@ -28,10 +37,20 @@ def ctags_cscope_refresh():
         % (proj_path)
     )
 
+    reset_cscope_con(proj_path)
+
     if "".join(output.readlines()).strip() == '':
         print "Build/Refresh ctags&cscope at " + proj_path + " successfully."
     else:
         print "Error: ".join(output.readlines()).strip()
+
+    return
+
+def ctags_cscope_refresh_con():
+    proj_path = get_proj_path()
+    reset_cscope_con(proj_path)
+    return
 EOF
 
-command! -nargs=0 CtagsCscopeRefresh exec('py ctags_cscope_refresh()')
+command! -nargs=0 CtagsCscopeRefreshFile exec('py ctags_cscope_refresh_file()')
+command! -nargs=0 CtagsCscopeRefreshCon exec('py ctags_cscope_refresh_con()')
