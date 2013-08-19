@@ -18,25 +18,25 @@ Add following lines into your .vimrc:
 	nmap <C-@><C-c> :UniqueTagDBRefreshCon <CR>
 	nmap <C-@><C-s> :cs show <CR>
 
-You can replace the key youself.
+You can replace the keys youself.
 
 ### How to use
 
 When you want to build the tag database in your new projec **at the  first time**:
 
-you should open the Vim in **your project's root path**, (eg. /home/chetui/my_project/), and press the hotkey <C-@><C-f>.
+you should open the Vim in **your project's root path**, (eg. /home/chetui/my_project/), and press the hotkey \<C-@\>\<C-f\>.
 
 When you open the Vim **next time**:
 
-if **the path of your current editing file is in your project's path (including any subpaths)**, then you can press the hotkey <C-@><C-f> to refresh your tag database at anytime.
+if **the path of your current editing file is in your project's path (including any subpaths)**, then you can press the hotkey \<C-@\>\<C-f\> to refresh your tag database at anytime.
 
 ### How to use when I edit files of different projects
 
 The Vim can only use one cscope.out at a time.
 
-Hence, when you switch files of different projects in the Vim, you should press the hotkey <C-@><C-c> to switch cscope.out mannually. 
+Hence, when you switch files of different projects in the Vim, you should press the hotkey \<C-@\>\<C-c\> to switch cscope.out mannually. 
 
-Before switching cscope.out, you can also press the hotkey <C-@><C-s> to show which cscope.out you are using.
+Before switching cscope.out, you can also press the hotkey \<C-@\>\<C-s\> to show which cscope.out you are using.
 
 ### Bug Report
 
