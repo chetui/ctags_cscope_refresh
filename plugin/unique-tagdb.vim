@@ -51,7 +51,7 @@ def refresh_file():
 def refresh_con():
     proj_path = get_proj_path()
     reset_con(proj_path)
-    print "Refresh cscope connection successfully."
+    print "Refresh cscope.out path successfully."
     return
 
 init_proj_path = get_proj_path()
