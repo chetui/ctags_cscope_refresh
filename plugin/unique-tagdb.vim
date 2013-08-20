@@ -1,5 +1,7 @@
 python << EOF
-import sys, os, vim, time
+import sys, os, platform
+import time
+import vim
 
 def get_proj_path():
     cur_path = os.getcwd()
@@ -28,6 +30,9 @@ def reset_con(proj_path):
     return
 
 def refresh_file():
+    if vim.eval("g:unique_tagdb_connected") == "2": 
+        print "Error: System type is not supported by unique-tagdb."
+        return
     proj_path = get_proj_path()
 
     output = os.popen("""
@@ -49,6 +54,9 @@ def refresh_file():
     return
 
 def refresh_con():
+    if vim.eval("g:unique_tagdb_connected") == "2": 
+        print "Error: System type is not supported by unique-tagdb."
+        return
     proj_path = get_proj_path()
     reset_con(proj_path)
     print "Refresh cscope.out path successfully."
@@ -56,8 +64,15 @@ def refresh_con():
 
 init_proj_path = get_proj_path()
 if os.path.exists(os.path.join(init_proj_path, 'cscope.out')):
-    vim.command("silent cs add " + os.path.join(init_proj_path, 'cscope.out'))
-    vim.command("let g:unique_tagdb_connected=1")
+    sysstr = platform.system()
+    if sysstr == "Linux":
+        vim.command("let g:unique_tagdb_connected=1")
+    elif sysstr == "Darwin":  #MAC OS X
+        vim.command("silent cs add " + os.path.join(init_proj_path, 'cscope.out'))
+        vim.command("let g:unique_tagdb_connected=1")
+    else:
+        print "Error: System type is not supported by unique-tagdb."
+        vim.command("let g:unique_tagdb_connected=2")
 else:
     vim.command("let g:unique_tagdb_connected=0")
 
