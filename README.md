@@ -4,7 +4,7 @@ It is a Vim plugin, which can build and manage an **unique** tag database for ct
 
 ### How to install
 
-Make sure your ctags & cscope is installed correctly.
+Make sure your ctags & cscope are installed correctly.
 
 An easy way is to put unique-tagdb.vim into .vim/Plugin/ .
 
