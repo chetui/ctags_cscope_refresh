@@ -4,6 +4,8 @@ It is a Vim plugin, which can build and manage an **unique** tag database for ct
 
 ### How to install
 
+* Make sure your ctags & cscope are installed correctly.
+
 An easy way is to put unique-tagdb.vim into .vim/Plugin/ .
 
 But I highly recommend you to use [Bundle](https://github.com/gmarik/vundle.git) to install it:
@@ -24,19 +26,19 @@ You can replace the keys youself.
 
 When you want to build the tag database in your new projec **at the  first time**:
 
-you should open the Vim in **your project's root path**, (eg. /home/chetui/my_project/), and press the hotkey \<C-@\>\<C-f\>.
+* you should open the Vim in **your project's root path**, (eg. /home/chetui/my_project/), and press the hotkey \<C-@\>\<C-f\>.
 
 When you open the Vim **next time**:
 
-if **the path of your current editing file is in your project's path (including any subpaths)**, then you can press the hotkey \<C-@\>\<C-f\> to refresh your tag database at anytime.
+* if **the path of your current editing file is in your project's path (including any subpaths)**, then you can press the hotkey \<C-@\>\<C-f\> to refresh your tag database at anytime.
 
 ### How to use when I edit files of different projects
 
 The Vim should only use one cscope.out at a time (otherwise it is not good for the localization accuracy).
 
-Hence, when you switch files of different projects in the Vim, you should press the hotkey \<C-@\>\<C-c\> to switch cscope.out mannually. 
+* Hence, when you switch files of different projects in the Vim, you should press the hotkey \<C-@\>\<C-c\> to switch cscope.out mannually. 
 
-Before switching cscope.out, you can also press the hotkey \<C-@\>\<C-s\> to show which cscope.out you are using.
+* Before switching cscope.out, you can also press the hotkey \<C-@\>\<C-s\> to show which cscope.out you are using.
 
 ### Bug Report
 
