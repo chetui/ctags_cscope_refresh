@@ -67,7 +67,9 @@ if os.path.exists(os.path.join(init_proj_path, 'cscope.out')):
     sysstr = platform.system()
     if sysstr == "Linux" or sysstr == "Darwin":
         if not (sysstr == "Linux" and os.getcwd() == init_proj_path):
+            vim.command("set nocsverb")
             vim.command("silent cs add " + os.path.join(init_proj_path, 'cscope.out'))
+            pass
         vim.command("let g:unique_tagdb_connected=1")
     else:
         print "Error: System type is not supported by unique-tagdb."
